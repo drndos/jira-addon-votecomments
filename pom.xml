@@ -6,11 +6,11 @@
     <artifactId>jira-addon-votecomments</artifactId>
     <version>1.0</version>
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Regy Inc</name>
+        <url>http://www.renjithv.info/</url>
     </organization>
-    <name>jira-addon-votecomments</name>
-    <description>This is the info.renjithv.votecomments:jira-addon-votecomments plugin for Atlassian JIRA.</description>
+    <name>JIRA Vote For Comments</name>
+    <description>Every wondered how to like dislike a JIRA comment? This plugin is for you then.</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>
