@@ -10,7 +10,7 @@
         <url>http://www.renjithv.info/</url>
     </organization>
     <name>JIRA Vote For Comments</name>
-    <description>Every wondered how to like dislike a JIRA comment? This plugin is for you then.</description>
+    <description>Anytime wondered how to Like or Dislike a JIRA comment? This plugin is for you then.</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>

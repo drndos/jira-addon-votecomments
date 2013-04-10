@@ -58,15 +58,13 @@ function ShowCurrentVotes() {
                     var cmData = commentData["comment-" + commentId];
 
                     if (cmData && cmData.downvotes) {
-                        AJS.$(this).after(
-                            AJS.$('<div class="currentvotes"><font color="red">' + cmData.downvotes + '&nbsp;</font><img class="emoticon" src="' +
-                                AJS.contextPath() + '/images/icons/emoticons/thumbs_down.gif" height="19" width="19" align="absmiddle" alt="" border="0"></div>')
+                        AJS.$(this).before(
+                            AJS.$('<div class="currentvotes dislikes">' + cmData.downvotes + ' dislike(s)</div>')
                         );
                     }
                     if (cmData && cmData.upvotes) {
-                        AJS.$(this).after(
-                            AJS.$('<div class="currentvotes"><font color="green">' + cmData.upvotes + '&nbsp;</font><img class="emoticon" src="' +
-                                AJS.contextPath() + '/images/icons/emoticons/thumbs_up.gif" height="19" width="19" align="absmiddle" alt="" border="0"></div>')
+                        AJS.$(this).before(
+                            AJS.$('<div class="currentvotes likes">' + cmData.upvotes + ' like(s)</div>')
                         );
                     }
                 });
