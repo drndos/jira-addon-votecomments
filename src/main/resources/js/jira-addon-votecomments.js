@@ -5,7 +5,7 @@ function AddVoteButtons() {
     AJS.$('div[id|=comment][id!=comment-wiki-edit]').each(function () {
         var commentId = AJS.$(this).attr('id').split('-')[1];
         var commentUser = AJS.$(this).find('.action-details a').attr("rel");
-        console.log("commentUser - " + commentUser);
+        //console.log("commentUser - " + commentUser);
         AJS.$(this).find('.action-links').each(function () {
             //Add the buttons (only if the comment is from someone else)
 
@@ -23,7 +23,7 @@ function AddVoteButtons() {
         AJS.$.ajax({
             url: AJS.contextPath() + "/rest/votecomments/latest/upvote?commentid=" + AJS.$(this).attr('commentid') + '&issueid=' + issueID,
             success: function () {
-                console.log('Up voted');
+                //console.log('Up voted');
                 ShowCurrentVotes();
             }
         });
@@ -34,7 +34,7 @@ function AddVoteButtons() {
         AJS.$.ajax({
             url: AJS.contextPath() + "/rest/votecomments/latest/downvote?commentid=" + AJS.$(this).attr('commentid') + '&issueid=' + issueID,
             success: function () {
-                console.log('Down voted');
+                //console.log('Down voted');
                 ShowCurrentVotes();
             }
         });
@@ -76,4 +76,8 @@ function ShowCurrentVotes() {
 AJS.$('document').ready(function () {
     AddVoteButtons();
     ShowCurrentVotes();
+    JIRA.ViewIssueTabs.onTabReady(function(){
+        AddVoteButtons();
+        ShowCurrentVotes();
+    });
 });
