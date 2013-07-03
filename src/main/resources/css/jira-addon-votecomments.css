@@ -9,3 +9,6 @@
 .dislikes {
     color: red;
 }
+.upvote ,.downvote{
+	display: inline;
+}

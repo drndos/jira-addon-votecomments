@@ -1,44 +1,52 @@
 function AddVoteButtons() {
     var loggedInUser = AJS.$('input[title="loggedInUser"]').val();
     var issueID = AJS.$('input[name="id"]').val();
+    //console.log(loggedInUser);
+    var buttonsAdded = false;
 
     AJS.$('div[id|=comment][id!=comment-wiki-edit]').each(function () {
         var commentId = AJS.$(this).attr('id').split('-')[1];
         var commentUser = AJS.$(this).find('.action-details a').attr("rel");
         //console.log("commentUser - " + commentUser);
         AJS.$(this).find('.action-links').each(function () {
-            //Add the buttons (only if the comment is from someone else)
-
-            if (loggedInUser != commentUser) {
-                AJS.$(this).append(AJS.$('<a href="#" class="icon upvote" commentid=' + commentId + ' title="Up votes this comment">' +
-                    '<img class="emoticon" src="' + AJS.contextPath() + '/images/icons/emoticons/thumbs_up.gif" height="19" width="19" align="absmiddle" alt="" border="0"></a>' +
-                    '<a href="#" class="icon downvote" commentid=' + commentId + ' title="Down votes this comment">' +
-                    '<img class="emoticon" src="' + AJS.contextPath() + '/images/icons/emoticons/thumbs_down.gif" height="19" width="19" align="absmiddle" alt="" border="0"></a>'));
+            if(AJS.$(this).find('.upvote').length == 0){
+                //Add the buttons (only if the comment is from someone else)
+                if (loggedInUser != commentUser) {
+                    //console.log("Adding buttons");
+                    buttonsAdded = true;
+                    AJS.$(this).append(AJS.$('<a href="#" class="icon upvote" commentid=' + commentId + ' title="Up votes this comment">' +
+                        '<img class="emoticon" src="' + AJS.contextPath() + '/images/icons/emoticons/thumbs_up.gif" height="16" width="16" align="absmiddle" alt="" border="0"></a>' +
+                        '<a href="#" class="icon downvote" commentid=' + commentId + ' title="Down votes this comment">' +
+                        '<img class="emoticon" src="' + AJS.contextPath() + '/images/icons/emoticons/thumbs_down.gif" height="16" width="16" align="absmiddle" alt="" border="0"></a>'));
+                }
+            } else {
+                //console.log("buttons already added");
             }
         });
     });
-
-    AJS.$('.upvote').click(function (event) {
-        event.preventDefault();
-        AJS.$.ajax({
-            url: AJS.contextPath() + "/rest/votecomments/latest/upvote?commentid=" + AJS.$(this).attr('commentid') + '&issueid=' + issueID,
-            success: function () {
-                //console.log('Up voted');
-                ShowCurrentVotes();
-            }
+    if(buttonsAdded) {
+        AJS.$('.upvote').click(function (event) {
+            event.preventDefault();
+            AJS.$.ajax({
+                url: AJS.contextPath() + "/rest/votecomments/latest/upvote?commentid=" + AJS.$(this).attr('commentid') + '&issueid=' + issueID,
+                success: function () {
+                    //console.log('Up voted');
+                    ShowCurrentVotes();
+                }
+            });
         });
-    });
 
-    AJS.$('.downvote').click(function (event) {
-        event.preventDefault();
-        AJS.$.ajax({
-            url: AJS.contextPath() + "/rest/votecomments/latest/downvote?commentid=" + AJS.$(this).attr('commentid') + '&issueid=' + issueID,
-            success: function () {
-                //console.log('Down voted');
-                ShowCurrentVotes();
-            }
+        AJS.$('.downvote').click(function (event) {
+            event.preventDefault();
+            AJS.$.ajax({
+                url: AJS.contextPath() + "/rest/votecomments/latest/downvote?commentid=" + AJS.$(this).attr('commentid') + '&issueid=' + issueID,
+                success: function () {
+                    //console.log('Down voted');
+                    ShowCurrentVotes();
+                }
+            });
         });
-    });
+    }
 }
 
 function ShowCurrentVotes() {
@@ -72,12 +80,20 @@ function ShowCurrentVotes() {
         }
     );
 }
+function CheckPermissionsAndAdd(){
+    AJS.$.getJSON(AJS.contextPath() + "/rest/api/latest/mypermissions?issueKey=" + AJS.Meta.get("issue-key"), function (data) {
+        if(data.permissions.VIEW_VOTERS_AND_WATCHERS.havePermission){
+            AddVoteButtons();
+        }
+    });
+
+}
 
 AJS.$('document').ready(function () {
-    AddVoteButtons();
+    CheckPermissionsAndAdd();
     ShowCurrentVotes();
     JIRA.ViewIssueTabs.onTabReady(function(){
-        AddVoteButtons();
+        CheckPermissionsAndAdd();
         ShowCurrentVotes();
     });
 });

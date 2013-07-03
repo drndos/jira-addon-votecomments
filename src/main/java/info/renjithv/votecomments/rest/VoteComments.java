@@ -96,7 +96,7 @@ public class VoteComments {
 
     @GET
     @AnonymousAllowed
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("upvote")
     public Response upvoteComment(@QueryParam("commentid") final Long commentid, @QueryParam("issueid") final Long issueid) {
         if (null == issueid || null == commentid) {
@@ -108,7 +108,7 @@ public class VoteComments {
 
     @GET
     @AnonymousAllowed
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("downvote")
     public Response downvoteComment(@QueryParam("commentid") Long commentid, @QueryParam("issueid") final Long issueid) {
         if (null == issueid || null == commentid) {
