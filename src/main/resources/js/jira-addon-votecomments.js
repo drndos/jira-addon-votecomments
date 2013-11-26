@@ -50,35 +50,45 @@ function AddVoteButtons() {
 }
 
 function ShowCurrentVotes() {
+
     var issueID = AJS.$('input[name="id"]').val();
     var commentData = {};
 
-    AJS.$.getJSON(AJS.contextPath() + "/rest/votecomments/latest/commentsvotes?issueid=" + issueID, function (data) {
-            AJS.$.each(data, function () {
-                commentData['comment-' + this.commentid] = this;
-            });
-            AJS.$('.currentvotes').remove();
+    if (typeof issueID === "undefined") {
 
-            AJS.$('div[id|=comment][id!=comment-wiki-edit]').each(function () {
-                var commentId = AJS.$(this).attr('id').split('-')[1];
-                AJS.$(this).find('.action-links').each(function () {
-                    //Add the current votes
-                    var cmData = commentData["comment-" + commentId];
+           // console.log("issueID  is undefined");
 
-                    if (cmData && cmData.downvotes) {
-                        AJS.$(this).before(
-                            AJS.$('<div class="currentvotes dislikes">' + cmData.downvotes + ' dislike(s)</div>')
-                        );
-                    }
-                    if (cmData && cmData.upvotes) {
-                        AJS.$(this).before(
-                            AJS.$('<div class="currentvotes likes">' + cmData.upvotes + ' like(s)</div>')
-                        );
-                    }
-                });
-            });
-        }
-    );
+       } else {
+
+              AJS.$.getJSON(AJS.contextPath() + "/rest/votecomments/latest/commentsvotes?issueid=" + issueID, function (data) {
+                          AJS.$.each(data, function () {
+                              commentData['comment-' + this.commentid] = this;
+                          });
+                          AJS.$('.currentvotes').remove();
+
+                          AJS.$('div[id|=comment][id!=comment-wiki-edit]').each(function () {
+                              var commentId = AJS.$(this).attr('id').split('-')[1];
+                              AJS.$(this).find('.action-links').each(function () {
+                                  //Add the current votes
+                                  var cmData = commentData["comment-" + commentId];
+
+                                  if (cmData && cmData.downvotes) {
+                                      AJS.$(this).before(
+                                          AJS.$('<div class="currentvotes dislikes">' + cmData.downvotes + ' dislike(s)</div>')
+                                      );
+                                  }
+                                  if (cmData && cmData.upvotes) {
+                                      AJS.$(this).before(
+                                          AJS.$('<div class="currentvotes likes">' + cmData.upvotes + ' like(s)</div>')
+                                      );
+                                  }
+                              });
+                          });
+                      }
+                  );
+       }
+
+
 }
 function CheckPermissionsAndAdd(){
     AJS.$.getJSON(AJS.contextPath() + "/rest/api/latest/mypermissions?issueKey=" + AJS.Meta.get("issue-key"), function (data) {

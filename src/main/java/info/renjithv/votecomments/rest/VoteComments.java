@@ -9,7 +9,6 @@ import com.atlassian.jira.issue.comments.Comment;
 import com.atlassian.jira.issue.comments.CommentManager;
 import com.atlassian.jira.security.PermissionManager;
 import com.atlassian.jira.security.Permissions;
-import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.plugins.rest.common.security.AnonymousAllowed;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import info.renjithv.votecomments.VoteInfo;
@@ -57,7 +56,7 @@ public class VoteComments {
             log.warn(issueid);
         }
 
-        final ApplicationUser loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getUser();
+        final User loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser();
         final Hashtable<Long, VoteCommentsModel> data = new Hashtable<Long, VoteCommentsModel>();
         final MutableIssue issueObject = issueManager.getIssueObject(issueid);
 
