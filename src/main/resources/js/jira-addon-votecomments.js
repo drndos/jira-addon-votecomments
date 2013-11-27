@@ -14,9 +14,9 @@ function AddVoteButtons() {
                 if (loggedInUser != commentUser) {
                     //console.log("Adding buttons");
                     buttonsAdded = true;
-                    AJS.$(this).append(AJS.$('<a href="#" class="icon upvote" commentid=' + commentId + ' title="Up votes this comment">' +
+                    AJS.$(this).append(AJS.$('<a href="#" id="upvote" class="icon upvote" commentid=' + commentId + ' title="Up votes this comment">' +
                         '<img class="emoticon" src="' + AJS.contextPath() + '/images/icons/emoticons/thumbs_up.gif" height="16" width="16" align="absmiddle" alt="" border="0"></a>' +
-                        '<a href="#" class="icon downvote" commentid=' + commentId + ' title="Down votes this comment">' +
+                        '<a href="#" id="downvote" class="icon downvote" commentid=' + commentId + ' title="Down votes this comment">' +
                         '<img class="emoticon" src="' + AJS.contextPath() + '/images/icons/emoticons/thumbs_down.gif" height="16" width="16" align="absmiddle" alt="" border="0"></a>'));
                 }
             } else {
