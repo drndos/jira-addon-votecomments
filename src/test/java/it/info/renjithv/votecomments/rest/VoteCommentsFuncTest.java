@@ -21,7 +21,7 @@ public class VoteCommentsFuncTest {
 
 //        String baseUrl = System.getProperty("baseurl");
 //        String resourceUrl = baseUrl + "/rest/votecomments/1.0/message";
-//
+
 //        RestClient client = new RestClient();
 //        Resource resource = client.resource(resourceUrl);
 //
