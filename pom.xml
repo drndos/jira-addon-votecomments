@@ -13,8 +13,8 @@
     <description>Anytime wondered how to Like or Dislike a JIRA comment? This plugin is for you then.</description>
     <packaging>atlassian-plugin</packaging>
     <scm>
-        <connection>scm:git:https://bitbucket.org/vrenjith/jira-addon-votecomments</connection>
-        <developerConnection>scm:git:ssh://git@bitbucket.org/vrenjith/jira-addon-votecomments</developerConnection>
+        <connection>scm:git:https://vrenjith@bitbucket.org/vrenjith/jira-addon-votecomments.git</connection>
+        <developerConnection>scm:git:https://vrenjith@bitbucket.org/vrenjith/jira-addon-votecomments.git</developerConnection>
         <url>https://bitbucket.org/vrenjith/jira-addon-votecomments/src</url>
     </scm>
     <dependencies>
