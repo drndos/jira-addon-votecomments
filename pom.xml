@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>info.renjithv.votecomments</groupId>
     <artifactId>jira-addon-votecomments</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <organization>
         <name>Regy Inc</name>
         <url>http://www.renjithv.info/</url>
@@ -155,6 +155,7 @@
                 <version>${amps.version}</version>
                 <extensions>true</extensions>
                 <configuration>
+                    <maxmemory>1024M</maxmemory>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
                     <pluginArtifacts>
