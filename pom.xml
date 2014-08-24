@@ -71,12 +71,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.atlassian.plugins.rest</groupId>
-            <artifactId>atlassian-rest-common</artifactId>
-            <version>1.0.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.atlassian.sal</groupId>
             <artifactId>sal-api</artifactId>
             <version>2.6.0</version>
@@ -120,12 +114,6 @@
         </dependency>
         <dependency>
             <groupId>com.atlassian.jira.tests</groupId>
-            <artifactId>jira-testkit-client</artifactId>
-            <version>${testkit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.jira.tests</groupId>
             <artifactId>jira-func-test-basics</artifactId>
             <version>${func-test.version}</version>
             <scope>test</scope>
@@ -155,27 +143,9 @@
                 <version>${amps.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <maxmemory>1024M</maxmemory>
+                    <jvmArgs>-Xmx2048m -XX:MaxPermSize=512m</jvmArgs>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
-                    <pluginArtifacts>
-                        <pluginArtifact>
-                            <groupId>com.atlassian.jira.tests</groupId>
-                            <artifactId>jira-testkit-plugin</artifactId>
-                            <version>${testkit.version}</version>
-                        </pluginArtifact>
-                    </pluginArtifacts>
-                    <testGroups>
-                        <testGroup>
-                            <id>integration_test</id>
-                            <productIds>
-                                <productId>jira</productId>
-                            </productIds>
-                            <includes>
-                                <include>it/**/*.java</include>
-                            </includes>
-                        </testGroup>
-                    </testGroups>
                 </configuration>
             </plugin>
             <plugin>
@@ -188,11 +158,10 @@
         </plugins>
     </build>
     <properties>
-        <jira.version>6.2</jira.version>
-        <amps.version>4.2.13</amps.version>
-        <plugin.testrunner.version>1.1</plugin.testrunner.version>
+        <jira.version>6.3.1</jira.version>
+        <amps.version>5.0.4</amps.version>
+        <plugin.testrunner.version>1.2.0</plugin.testrunner.version>
         <ao.version>0.19.7</ao.version>
-        <testkit.version>6.2.7</testkit.version>
         <rest.version>2.7.1</rest.version>
         <func-test.version>1.9.7</func-test.version>
     </properties>
