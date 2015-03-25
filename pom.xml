@@ -159,8 +159,8 @@
         </plugins>
     </build>
     <properties>
-        <jira.version>6.3.1</jira.version>
-        <amps.version>5.0.4</amps.version>
+        <jira.version>6.4</jira.version>
+        <amps.version>5.0.13</amps.version>
         <plugin.testrunner.version>1.2.0</plugin.testrunner.version>
         <ao.version>0.19.7</ao.version>
         <rest.version>2.7.1</rest.version>
