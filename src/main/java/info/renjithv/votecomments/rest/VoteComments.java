@@ -1,7 +1,6 @@
 package info.renjithv.votecomments.rest;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
-import com.atlassian.crowd.embedded.api.User;
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.jira.issue.MutableIssue;
@@ -9,6 +8,7 @@ import com.atlassian.jira.issue.comments.Comment;
 import com.atlassian.jira.issue.comments.CommentManager;
 import com.atlassian.jira.security.PermissionManager;
 import com.atlassian.jira.security.Permissions;
+import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.plugins.rest.common.security.AnonymousAllowed;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import info.renjithv.votecomments.VoteInfo;
@@ -56,7 +56,7 @@ public class VoteComments {
             log.warn(issueid);
         }
 
-        final User loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser();
+        final ApplicationUser loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser();
         final Hashtable<Long, VoteCommentsModel> data = new Hashtable<Long, VoteCommentsModel>();
         final MutableIssue issueObject = issueManager.getIssueObject(issueid);
 
@@ -119,7 +119,7 @@ public class VoteComments {
     }
 
     private void UpdateVote(final Integer increment, final Long commentid, final Long issueid) {
-        final User loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser();
+        final ApplicationUser loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser();
         final MutableIssue issueObject = issueManager.getIssueObject(issueid);
         final Comment comment = commentManager.getCommentById(commentid);
 

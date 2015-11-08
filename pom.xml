@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>info.renjithv.votecomments</groupId>
     <artifactId>jira-addon-votecomments</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.7-SNAPSHOT</version>
     <organization>
         <name>Regy Inc</name>
         <url>http://www.renjithv.info/</url>
@@ -159,8 +159,8 @@
         </plugins>
     </build>
     <properties>
-        <jira.version>6.4</jira.version>
-        <amps.version>5.0.13</amps.version>
+        <jira.version>7.0.0</jira.version>
+        <amps.version>6.1.2</amps.version>
         <plugin.testrunner.version>1.2.0</plugin.testrunner.version>
         <ao.version>0.19.7</ao.version>
         <rest.version>2.7.1</rest.version>
