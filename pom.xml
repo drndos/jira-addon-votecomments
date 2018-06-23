@@ -4,20 +4,26 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>info.renjithv.votecomments</groupId>
     <artifactId>jira-addon-votecomments</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.13-SNAPSHOT</version>
     <organization>
-        <name>Regy Inc</name>
-        <url>http://www.renjithv.info/</url>
+        <name>Atlazon</name>
+        <url>http://www.atlazon.com/</url>
     </organization>
     <name>JIRA Vote For Comments</name>
     <description>Anytime wondered how to Like or Dislike a JIRA comment? This plugin is for you then.</description>
     <packaging>atlassian-plugin</packaging>
     <scm>
-        <connection>scm:git:https://vrenjith@bitbucket.org/vrenjith/jira-addon-votecomments.git</connection>
-        <developerConnection>scm:git:https://vrenjith@bitbucket.org/vrenjith/jira-addon-votecomments.git</developerConnection>
+        <connection>scm:git:ssh://git@bitbucket.org/vrenjith/jira-addon-votecomments.git</connection>
+        <developerConnection>scm:git:ssh://git@bitbucket.org/vrenjith/jira-addon-votecomments.git</developerConnection>
         <url>https://bitbucket.org/vrenjith/jira-addon-votecomments/src</url>
-      <tag>HEAD</tag>
+      <tag>jira-addon-votecomments-1.8</tag>
   </scm>
+  <distributionManagement>
+	  <repository>
+		  <id>maven-repository</id>
+		  <url>${local.maven.repository}</url>
+	  </repository>
+  </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>com.atlassian.jira</groupId>
@@ -159,12 +165,13 @@
         </plugins>
     </build>
     <properties>
-        <jira.version>7.2.0</jira.version>
+        <jira.version></jira.version>
         <amps.version>6.2.6</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
         <ao.version>0.19.7</ao.version>
         <rest.version>2.7.1</rest.version>
         <func-test.version>1.9.7</func-test.version>
+		<local.maven.repository>file://localrepo</local.maven.repository>
     </properties>
     <issueManagement>
         <system>Bitbucket</system>
