@@ -150,7 +150,7 @@
                 <version>${amps.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <jvmArgs>-Xmx2048m -XX:MaxPermSize=512m</jvmArgs>
+                    <jvmArgs>-Xmx2048m</jvmArgs>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
                 </configuration>
