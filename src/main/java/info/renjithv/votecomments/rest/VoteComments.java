@@ -53,7 +53,7 @@ public class VoteComments {
             return Response.notModified("Issue Id missing").build();
         }
         else {
-            log.warn(issueid);
+            log.debug("Fetching comment votes for issue: " + issueid);
         }
 
         final ApplicationUser loggedInUser = ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser();
