@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>info.renjithv.votecomments</groupId>
     <artifactId>jira-addon-votecomments</artifactId>
-    <version>1.16</version>
+    <version>1.16-SNAPSHOT</version>
     <organization>
         <name>Atlazon</name>
         <url>http://www.atlazon.com/</url>
@@ -165,7 +165,7 @@
         </plugins>
     </build>
     <properties>
-        <jira.version>8.1.0</jira.version>
+        <jira.version>8.2.2</jira.version>
         <amps.version>6.2.6</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
         <ao.version>0.19.7</ao.version>
