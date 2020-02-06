@@ -74,12 +74,12 @@ function ShowCurrentVotes() {
 
                                   if (cmData && cmData.downvotes) {
                                       AJS.$(this).before(
-                                          AJS.$('<div class="currentvotes dislikes">' + cmData.downvotes + ' dislike(s)</div>')
+                                          AJS.$('<div class="currentvotes dislikes" title="' + cmData.dislikers.join(",") +'">' + cmData.downvotes + ' dislike(s)</div>')
                                       );
                                   }
                                   if (cmData && cmData.upvotes) {
                                       AJS.$(this).before(
-                                          AJS.$('<div class="currentvotes likes">' + cmData.upvotes + ' like(s)</div>')
+                                          AJS.$('<div class="currentvotes likes" title="' + cmData.likers.join(",") +'">' + cmData.upvotes + ' like(s)</div>')
                                       );
                                   }
                               });

@@ -21,6 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -51,8 +52,7 @@ public class VoteComments {
     public Response getIssueCommentsVotes(@QueryParam("issueid") final Long issueid) {
         if (null == issueid) {
             return Response.notModified("Issue Id missing").build();
-        }
-        else {
+        } else {
             log.debug("Fetching comment votes for issue: " + issueid);
         }
 
@@ -67,16 +67,18 @@ public class VoteComments {
                     VoteInfo[] votes = ao.find(VoteInfo.class, "ISSUE_ID = ?", issueid);
                     for (VoteInfo voteInfo : votes) {
                         log.info("Vote id - " + voteInfo.getID());
-                        VoteCommentsModel inData = new VoteCommentsModel(voteInfo.getCommentId(), 0, 0);
+                        VoteCommentsModel inData = new VoteCommentsModel(voteInfo.getCommentId(), 0, 0, new ArrayList<String>(), new ArrayList<String>());
                         if (data.containsKey(voteInfo.getCommentId())) {
                             inData = data.get(voteInfo.getCommentId());
                         }
                         switch (voteInfo.getVoteCount()) {
                             case -1:
                                 inData.setDownVotes(inData.getDownVotes() + 1);
+                                inData.getDislikers().add(voteInfo.getUserName());
                                 break;
                             case 1:
                                 inData.setUpVotes(inData.getUpVotes() + 1);
+                                inData.getLikers().add(voteInfo.getUserName());
                                 break;
                             default:
                                 log.error("No way this can happen");
@@ -86,9 +88,7 @@ public class VoteComments {
                     return null;
                 }
             });
-        }
-        else
-        {
+        } else {
             log.warn("Get votes request ignored");
         }
         return Response.ok(data.values()).build();
@@ -103,7 +103,7 @@ public class VoteComments {
             return Response.notModified("Required parameters missing").build();
         }
         UpdateVote(1, commentid, issueid);
-        return Response.ok(new VoteCommentsModel(commentid, 0, 0)).build();
+        return Response.ok(new VoteCommentsModel(commentid, 0, 0, new ArrayList<String>(), new ArrayList<String>())).build();
     }
 
     @GET
@@ -115,7 +115,7 @@ public class VoteComments {
             return Response.notModified("Required parameters missing").build();
         }
         UpdateVote(-1, commentid, issueid);
-        return Response.ok(new VoteCommentsModel(commentid, 0, 0)).build();
+        return Response.ok(new VoteCommentsModel(commentid, 0, 0, new ArrayList<String>(), new ArrayList<String>())).build();
     }
 
     private void UpdateVote(final Integer increment, final Long commentid, final Long issueid) {
@@ -147,14 +147,14 @@ public class VoteComments {
                             log.info("Existing vote found for this user, comment and issue");
                             Integer vote = votes[0].getVoteCount();
                             vote = vote + increment;
-                        /*
-                        * -1 + 1  = 0 = delete
-                        * 0  + 1  => This is not possible
-                        * 1  + 1  => 2 = 1
-                        * -1 + -1 => -2 = -1
-                        * 0  + -1 => This is not possible
-                        * 1  + -1 = 0 = delete
-                        * */
+                            /*
+                             * -1 + 1  = 0 = delete
+                             * 0  + 1  => This is not possible
+                             * 1  + 1  => 2 = 1
+                             * -1 + -1 => -2 = -1
+                             * 0  + -1 => This is not possible
+                             * 1  + -1 = 0 = delete
+                             * */
                             switch (vote) {
                                 case 0:
                                     ao.delete(votes[0]);
