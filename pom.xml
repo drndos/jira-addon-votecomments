@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>info.renjithv.votecomments</groupId>
     <artifactId>jira-addon-votecomments</artifactId>
-    <version>1.20-SNAPSHOT</version>
+    <version>1.20</version>
     <organization>
         <name>Atlazon</name>
         <url>http://www.atlazon.com/</url>
@@ -16,7 +16,7 @@
         <connection>scm:git:ssh://git@bitbucket.org/vrenjith/jira-addon-votecomments.git</connection>
         <developerConnection>scm:git:ssh://git@bitbucket.org/vrenjith/jira-addon-votecomments.git</developerConnection>
         <url>https://bitbucket.org/vrenjith/jira-addon-votecomments/src</url>
-      <tag>jira-addon-votecomments-1.16</tag>
+      <tag>jira-addon-votecomments-1.20</tag>
   </scm>
   <distributionManagement>
 	  <repository>
