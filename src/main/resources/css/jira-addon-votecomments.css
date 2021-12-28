@@ -1,14 +1,18 @@
-.currentvotes{
-    float: right;
-    margin-left: 15px;
-    margin-right: 15px;
+.currentvotes {
+  float: right;
+  margin-left: 15px;
+  margin-right: 15px;
 }
+
 .likes {
-    color: green;
+  color: green;
 }
+
 .dislikes {
-    color: red;
+  color: red;
 }
-.upvote ,.downvote{
-	display: inline;
+
+.upvote, .downvote {
+  display: inline;
+  margin-right: 5px;
 }

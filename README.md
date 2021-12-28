@@ -4,5 +4,8 @@ This plugin enables up voting and down voting of comments to JIRA issues. This m
 ![Screenshot](screenshot1.PNG?raw=true "Screenshot")
 
 ## Changelog
+### 28.12.2021 - 1.23
+- Fix compatibility with Jira 8.21
+- Refactoring
 ### 6.2.2020 - 1.19
 - Add dislikers and likers to title
